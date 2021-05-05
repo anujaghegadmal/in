@@ -150,7 +150,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="form-group fg-line">
-                                                    <button type="button" class="btn btn-primary bg waves-effect"  onclick='add_video()'>Save</button>
+                                                    <button type="button" class="btn btn-primary bg waves-effect"  onclick='add_video(value.course_id)'>Save</button>
                                                 </div>
                                             </form>                                        
                                         </div>
@@ -420,20 +420,35 @@
                     video_description : $("#description").val(),
                     video_thumbnail : $("#f_t_path").val(),
                     video_path : $("#f_v_path").val(),
-                    course_id : 17,
+                    course_id : 21,
                     created_by : 40
                 }
                 
                 console.log(video_details);
 
+                swal({
+                    title: "Do you want to Add this video?",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(decision) {
+                if (decision) {
                 $.ajax({
                     url:"http://localhost:8080/videos/create",
                     type:"POST",
                     data:video_details,
                     success:function(res){
-                        console.log(res);
+                        // console.log(res);
+                        swal("Good job!", "Video Added!", "success")
+                            .then(function(){
+                                location.reload();
+                            });
                     }
                 });
+                } else {
+                    
+                }});
             }
 
         </script>
