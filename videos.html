@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<!--[if IE 9 ]><html class="ie9"><![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>E-Learning App</title>
+
+        <!-- Vendor CSS -->
+        <link href="vendors/bower_components/fullcalendar/dist/fullcalendar.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/animate.css/animate.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css" rel="stylesheet">
+        <link href="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.min.css" rel="stylesheet">        
+        <link href="vendors/bower_components/google-material-color/dist/palette.css" rel="stylesheet">
+        
+        <!-- CSS -->
+        <link href="css/app.min.1.css" rel="stylesheet">
+        <link href="css/app.min.2.css" rel="stylesheet"> 
+        
+    </head>
+    <body data-ma-header="teal">
+        <header id="header" class="media">
+            <div class="pull-left h-logo">
+                <a href="index.html" class="hidden-xs">
+                    E-Learning App   
+                    <!-- <small>admin extended</small> -->
+                </a>
+                
+                <div class="menu-collapse" data-ma-action="sidebar-open" data-ma-target="main-menu">
+                    <div class="mc-wrap">
+                        <div class="mcw-line top palette-White bg"></div>
+                        <div class="mcw-line center palette-White bg"></div>
+                        <div class="mcw-line bottom palette-White bg"></div>
+                    </div>
+                </div>
+            </div>
+            
+        </header>
+
+        <section id="main">
+            
+
+            <aside id="s-main-menu" class="sidebar">
+                <div class="smm-header">
+                    <i class="zmdi zmdi-long-arrow-left" data-ma-action="sidebar-close"></i>
+                </div>
+
+                <ul class="smm-alerts">
+                    <li class="" data-user-alert="sua-messages" data-ma-action="sidebar-open" data-ma-target="user-alerts">
+                        <i class="zmdi zmdi-account"></i>
+                    </li>
+                    <span style="color:white;font-size:25px;">Hi, Anuja</span>
+                </ul>
+
+                <ul class="main-menu">
+                    <li>
+                        <a href="index.html"><i class="zmdi zmdi-view-dashboard"></i> Dashboard</a>
+                    </li>
+                    <li class="sub-menu active">
+                        <a href="" data-ma-action="submenu-toggle"><i class="zmdi zmdi-collection-video"></i> Courses</a>
+
+                        <ul>
+                            <li><a href="add_course.html">Add New Course</a></li>
+                            <li class="active"><a href="pending_courses.html">Pending Courses</a></li>
+                            <li><a href="active_courses.html">Active Courses</a></li>
+                            <li><a href="deactivated_courses.html">Deactivated Courses</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="my_profile.html"><i class="zmdi zmdi-account-circle"></i> My Profile</a></li>
+                    <li><a href="enrollments.html"><i class="zmdi zmdi-accounts-add"></i> Enrollments</a></li>
+                </ul>
+            </aside>
+
+            <section id="content">
+                <div class="card">
+                    <div class="row">
+                        <div class="card-header">
+                            <div class="col-lg-11 col-xl-11">
+                                <h2>Course details</h2>
+                            </div>
+                            <div class="col-lg-1 col-xl-1">
+                                <button class='btn btn-success bg waves-effect' data-toggle="modal" data-target="#exampleModal4"><i  class='zmdi zmdi-edit zmdi-hc-fw'></i></button>
+                            </div>
+                            <!-- Modal- edit course -->
+                            <div class="modal" id="exampleModal4">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Curabitur blandit mollis lacus. Nulla sit amet est. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Cras sagittis.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-target-color="blue" data-toggle="modal" class="btn palette-Blue bg">Save</button>
+                                            <button type="button" data-target-color="bluegray" data-toggle="modal" class="btn palette-Blue-Grey bg" data-dismiss="modal">Cancel</button>                                            </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal- edit course -->
+                        </div>
+                    </div>
+
+                    <div class="card-body card-padding">
+                        <div id="course" class="row">
+                            <!-- code in $.ajax -->
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="row">
+                        <div class="card-header">
+                            <div class="col-lg-11 col-xl-11">
+                                <h2>Videos</h2>
+                            </div>
+                            <!-- Modal- add vdo btn -->
+                            <div class="col-lg-1 col-xl-1">
+                                <button class='btn btn-success bg waves-effect' data-toggle="modal" data-target="#exampleModal3"><i  class='zmdi zmdi-plus-circle zmdi-hc-fw'></i></button>                        
+                            </div>
+                            <div class="modal" id="exampleModal3">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Add video</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form role="form">
+                                                <div class="form-group fg-line">
+                                                    <input type="text" id="v_name" class="form-control input-sm" placeholder="Enter video title">
+                                                </div>
+                                                <div type="text" class="form-group fg-line">
+                                                    <textarea id="description" rows="5" class="form-control input-sm" placeholder="Enter video description"></textarea>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-xl-6 col-lg-6">
+                                                        <div class="form-group fg-line">
+                                                            <input type="hidden" id="f_t_path" class="form-control input-sm" placeholder="Enter here">
+                                                        </div>
+                                                        <div class="form-group fg-line">
+                                                            <input type="file" id="t_upload" class="form-control input-sm"   onchange='add_thumbnail()' placeholder="Thumbnail">Add thumbnail
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-xl-6 col-lg-6">
+                                                        <div class="form-group fg-line">
+                                                            <input type="hidden" id="f_v_path" class="form-control input-sm" placeholder="Enter here">
+                                                        </div>
+                                                        <div class="form-group fg-line">
+                                                            <input type="file" id="v_upload" class="form-control input-sm"   onchange='add_videoclip()' placeholder="Video">Add video
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="form-group fg-line">
+                                                    <button type="button" class="btn btn-primary bg waves-effect"  onclick='add_video()'>Save</button>
+                                                </div>
+                                            </form>                                        
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                            <button type="button" data-target-color="blue" data-toggle="modal" class="btn palette-Blue bg">Save</button>
+                                            <button type="button" data-target-color="red" data-toggle="modal" class="btn palette-Blue-Grey bg" data-dismiss="modal">Cancel</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal- add vdo btn -->
+                        </div>
+                    </div>
+
+                    <div class="card-body card-padding">
+                        <div class="row">  
+                            <div id="video" class="col-lg-12 col-xl-12">
+                                <!-- code in $.ajax -->
+
+                                <!-- vdo Modal -->
+                                <div class="modal" id="exampleModal5">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h4 class="modal-title">Modal title</h4>
+                                            </div>
+                                            <div class="modal-body">
+                                                <p>Curabitur blandit mollis lacus. Nulla sit amet est. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Cras sagittis.</p>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" data-target-color="blue" data-toggle="modal" class="btn palette-Blue bg">Save</button>
+                                                <button type="button" data-target-color="bluegray" data-toggle="modal" class="btn palette-Blue-Grey bg" data-dismiss="modal">Cancel</button>                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /vdo Modal -->
+                            </div>
+                            <!-- Modal- edit btn -->
+                            <div class="modal" id="exampleModal2">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h4 class="modal-title">Modal title</h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <p>Curabitur blandit mollis lacus. Nulla sit amet est. Suspendisse nisl elit, rhoncus eget, elementum ac, condimentum eget, diam. Donec mi odio, faucibus at, scelerisque quis, convallis in, nisi. Cras sagittis.</p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" data-target-color="blue" data-toggle="modal" class="btn palette-Blue bg">Save</button>
+                                            <button type="button" data-target-color="bluegray" data-toggle="modal" class="btn palette-Blue-Grey bg" data-dismiss="modal">Cancel</button>                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- /Modal- edit btn -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+        </section>
+
+        <!-- Page Loader -->
+        <!-- <div class="page-loader palette-Teal bg">
+            <div class="preloader pl-xl pls-white">
+                <svg class="pl-circular" viewBox="25 25 50 50">
+                    <circle class="plc-path" cx="50" cy="50" r="20"/>
+                </svg>
+            </div>
+        </div> -->
+        
+       
+        <!-- Javascript Libraries -->
+        <script src="vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="vendors/bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.concat.min.js"></script>
+        <script src="vendors/bower_components/Waves/dist/waves.min.js"></script>
+        <script src="vendors/bootstrap-growl/bootstrap-growl.min.js"></script>
+        <script src="vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+        <script src="vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js"></script>
+        <script src="vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+
+        <script src="vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="vendors/sparklines/jquery.sparkline.min.js"></script>
+        <script src="vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="js/flot-charts/curved-line-chart.js"></script>
+        <script src="js/flot-charts/line-chart.js"></script>
+
+        <!-- swal -->
+        <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+        <!-- Placeholder for IE9 -->
+        <!--[if IE 9 ]>
+        <script src="vendors/bower_components/jquery-placeholder/jquery.placeholder.min.js"></script>
+        <![endif]-->
+
+        <script src="js/charts.js"></script>
+
+        <script src="js/functions.js"></script>
+        <script src="js/actions.js"></script>
+        <script src="js/demo.js"></script>
+
+        <script>
+            function delete_video(id){
+                swal({
+                    title: "Do you want to Delete this video?",
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(decision) {
+                if (decision) {
+                    $.ajax({
+                        url:"http://localhost:8080/videos/delete/"+id,
+                        type:"GET",
+                        success:function(res){
+                            swal("Good job!", "Video Deleted!", "success")
+                            .then(function(){
+                                location.reload();
+                            });
+                        }
+
+                    });
+                } else {
+                    
+                }});
+            }
+
+            var page_url = window.location;
+            console.log(page_url.search);
+            var params = new URLSearchParams(window.location.search);
+            var course_id = params.get("c_id");
+            console.log(course_id)
+
+            $.ajax({
+            url:"http://localhost:8080/courses/read/"+course_id,
+            type:"GET",
+            success:function(res){
+                    console.log(res.payload[0]);
+                    value= res.payload[0];
+                   
+                        dt ="<div class='col-lg-4 col-xl-4'>"+
+                                "<img style='height:170px' src='http://localhost:8080/"+value.course_img_thumbnail+"' alt=''>"+
+                            "</div>"+
+                            "<div class='col-lg-7 col-xl-7'>"+
+                                "<div class='row'>"+
+                                    "<div class='col-lg-7 col-xl-7'>"+
+                                        "<h3>"+value.course_name+"</h3>"+
+                                    "</div>"+
+                                    "<div class='col-lg-2 col-xl-2'>"+
+                                        "<h3>₹ "+value.course_fees+"</h3>"+
+                                    "</div>"+
+                                    "<div class='col-lg-3 col-xl-3'>"+
+                                        "<h3><i class='zmdi zmdi-time zmdi-hc-fw'></i>"+value.duration+"</h3>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<div class='row'>"+
+                                    "<div class='col-lg-12 col-xl-12'>"+
+                                        "<h5>"+value.course_description+"</h5>"+
+                                    "</div>"+
+                                "</div>"+
+                            "</div>";
+                            
+
+                        $("#course").html(dt);
+    
+                        console.log(dt);
+                    
+                   
+                }
+            });
+            
+            $.ajax({
+            url:"http://localhost:8080/videos/video_details/"+course_id,
+            type:"GET",
+            success:function(res){
+                    console.log(res.payload); 
+
+                    // if (function sizeof(res) == 0){
+                    //     $("#jQuery").html("No videos uploaded yet")                       
+                    // }
+                    // else{                   
+                        $.each(res.payload, function(key, value){
+                            //  console.log(value.course_id);
+
+                        dt =    "<div class='row'>"+
+                                    "<div class='col-lg-4 col-xl-4'>"+
+                                        "<img style='height:170px' data-toggle='modal' data-target='#exampleModal5' src='http://localhost:8080/"+value.video_thumbnail+"' alt=''>"+
+                                    "</div>"+
+                                    "<div class='col-lg-7 col-xl-7'>"+
+                                        "<div class='row'>"+
+                                            "<div class='col-lg-12 col-xl-12'>"+
+                                                "<h3>"+value.video_title+"</h3>"+
+                                            "</div>"+
+                                            "<div class='col-lg-12 col-xl-12'>"+
+                                                "<h5>"+value.video_description+"</h5>"+
+                                            "</div>"+
+                                        "</div>"+
+                                    "</div>"+
+                                    "<div class='col-lg-1 col-xl-1'>"+
+                                        "<div class='row'>"+
+                                            "<button class='btn btn-primary bg waves-effect' data-toggle='modal' data-target='#exampleModal2'><i  class='zmdi zmdi-edit zmdi-hc-fw'></i></button>"+
+                                            "<button class='btn btn-danger bg waves-effect' onclick='delete_video("+value.id+")'><i  class='zmdi zmdi-delete zmdi-hc-fw'></i></button>"+
+                                        "</div>"+
+                                    "</div>"+
+                                "</div>"+
+                                "<br>";
+
+                        $("#video").append(dt);
+    
+                        console.log(dt);
+                    }); 
+                // }   
+                }
+            });
+
+            function add_thumbnail(){
+                var file_obj = document.getElementById("t_upload");
+                console.log(file_obj.files[0]);
+                var form_data = new FormData();
+                form_data.append("file",file_obj.files[0]);
+
+                $.ajax({
+                    url:"http://localhost:8080/courses/upload_thumbnail",
+                    type:"POST",
+                    data:form_data,
+                    "processData": false,
+                    "mimeType": "multipart/form-data",
+                    "contentType": false,
+                    success:function(res){
+                        // console.log(typeof(res))
+                        res = JSON.parse(res);
+                        console.log(res.filename);
+                        $("#f_t_path").val(res.filename);
+                    }
+                });
+            }
+
+            function add_videoclip(){
+                var file_obj1 = document.getElementById("v_upload");
+                console.log(file_obj1.files[0]);
+                var form_data = new FormData();
+                form_data.append("file",file_obj1.files[0]);
+
+                $.ajax({
+                    url:"http://localhost:8080/videos/upload_vdo",
+                    type:"POST",
+                    data:form_data,
+                    "processData": false,
+                    "mimeType": "multipart/form-data",
+                    "contentType": false,
+                    success:function(res){
+                        res = JSON.parse(res);
+                        console.log(res.filename);
+                        $("#f_v_path").val(res.filename);
+                    }
+                });
+            }
+
+            
+            function add_video(id){
+                var video_details = {
+                    video_title : $("#v_name").val(),
+                    video_description : $("#description").val(),
+                    video_thumbnail : $("#f_t_path").val(),
+                    video_path : $("#f_v_path").val(),
+                    course_id : 17,
+                    created_by : 40
+                }
+                
+                console.log(video_details);
+
+                $.ajax({
+                    url:"http://localhost:8080/videos/create",
+                    type:"POST",
+                    data:video_details,
+                    success:function(res){
+                        console.log(res);
+                    }
+                });
+            }
+
+        </script>
+        
+
+    </body>
+  </html>
