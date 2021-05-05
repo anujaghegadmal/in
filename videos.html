@@ -124,17 +124,17 @@
                                             <h4 class="modal-title">Add video</h4>
                                         </div>
                                         <div class="modal-body">
-                                            <form role="form">
+                                            <form role="form" id="video_info">
                                                 <div class="form-group fg-line">
-                                                    <input type="text" id="v_name" class="form-control input-sm" placeholder="Enter video title">
+                                                    <input required name="video_title" type="text" id="v_name" class="form-control input-sm" placeholder="Enter video title">
                                                 </div>
                                                 <div type="text" class="form-group fg-line">
-                                                    <textarea id="description" rows="5" class="form-control input-sm" placeholder="Enter video description"></textarea>
+                                                    <textarea required name="video_description" id="description" rows="5" class="form-control input-sm" placeholder="Enter video description"></textarea>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-xl-6 col-lg-6">
                                                         <div class="form-group fg-line">
-                                                            <input type="hidden" id="f_t_path" class="form-control input-sm" placeholder="Enter here">
+                                                            <input required name="video_thumbnail" type="hidden" id="f_t_path" class="form-control input-sm" placeholder="Enter here">
                                                         </div>
                                                         <div class="form-group fg-line">
                                                             <input type="file" id="t_upload" class="form-control input-sm"   onchange='add_thumbnail()' placeholder="Thumbnail">Add thumbnail
@@ -142,15 +142,19 @@
                                                     </div>
                                                     <div class="col-xl-6 col-lg-6">
                                                         <div class="form-group fg-line">
-                                                            <input type="hidden" id="f_v_path" class="form-control input-sm" placeholder="Enter here">
+                                                            <input required name="video_path" type="hidden" id="f_v_path" class="form-control input-sm" placeholder="Enter here">
                                                         </div>
                                                         <div class="form-group fg-line">
                                                             <input type="file" id="v_upload" class="form-control input-sm"   onchange='add_videoclip()' placeholder="Video">Add video
                                                         </div>
+                                                        <div>
+                                                            <input type="hidden" name="course_id" value="17">
+                                                            <input type="hidden" name="created_by" value="40">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="form-group fg-line">
-                                                    <button type="button" class="btn btn-primary bg waves-effect"  onclick='add_video(value.course_id)'>Save</button>
+                                                    <button type="submit" class="btn btn-primary bg waves-effect">Save</button>
                                                 </div>
                                             </form>                                        
                                         </div>
@@ -330,7 +334,7 @@
             url:"http://localhost:8080/videos/video_details/"+course_id,
             type:"GET",
             success:function(res){
-                    console.log(res.payload); 
+                    console.log(res); 
 
                     // if (function sizeof(res) == 0){
                     //     $("#jQuery").html("No videos uploaded yet")                       
@@ -414,16 +418,46 @@
             }
 
             
-            function add_video(id){
-                var video_details = {
-                    video_title : $("#v_name").val(),
-                    video_description : $("#description").val(),
-                    video_thumbnail : $("#f_t_path").val(),
-                    video_path : $("#f_v_path").val(),
-                    course_id : 21,
-                    created_by : 40
-                }
+            // function add__video(id){
+            //     var video_details = {
+            //         video_title : $("#v_name").val(),
+            //         video_description : $("#description").val(),
+            //         video_thumbnail : $("#f_t_path").val(),
+            //         video_path : $("#f_v_path").val(),
+            //         course_id : 21,
+            //         created_by : 40
+            //     }
                 
+            //     console.log(video_details);
+
+            //     swal({
+            //         title: "Do you want to Add this video?",
+            //         icon: "info",
+            //         buttons: true,
+            //         dangerMode: true,
+            //     })
+            //     .then(function(decision) {
+            //     if (decision) {
+            //     $.ajax({
+            //         url:"http://localhost:8080/videos/create",
+            //         type:"POST",
+            //         data:video_details,
+            //         success:function(res){
+            //             // console.log(res);
+            //             swal("Good job!", "Video Added!", "success")
+            //                 .then(function(){
+            //                     location.reload();
+            //                 });
+            //         }
+            //     });
+            //     } else {
+                    
+            //     }});
+            // }
+
+            $("#video_info").submit(function(e){
+                e.preventDefault();
+                video_details = $("#video_info").serializeArray();
                 console.log(video_details);
 
                 swal({
@@ -449,7 +483,7 @@
                 } else {
                     
                 }});
-            }
+            })
 
         </script>
         

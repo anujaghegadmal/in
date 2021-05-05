@@ -83,7 +83,7 @@
                                 <form role="form" id="course_info">
 
                                     <div class="form-group fg-line ">
-                                        <label>Course name <span class="text-danger">*</span></label>
+                                        <!-- <label>Course name <span class="text-danger">*</span></label> -->
                                         <input required type="text" name="course_name" id="c_name" class="form-control input-sm" placeholder="Enter course name">
                                     </div>
                                     <div type="text" class="form-group fg-line">
@@ -209,32 +209,32 @@
                 });
             }
 
-            function add_course(){
-                var course_details = {
-                    course_name : $("#c_name").val(),
-                    course_description : $("#description").val(),
-                    duration : $("#duration").val(),
-                    course_fees : $("#fees").val(),
-                    course_img_thumbnail : $("#f_path").val(),
-                    created_by : 40
-                }
-                // var c_name = 
-                // var description = 
-                // var duration = 
-                // var fees = 
-                // var f_path = 
+            // function add_course(){
+            //     var course_details = {
+            //         course_name : $("#c_name").val(),
+            //         course_description : $("#description").val(),
+            //         duration : $("#duration").val(),
+            //         course_fees : $("#fees").val(),
+            //         course_img_thumbnail : $("#f_path").val(),
+            //         created_by : 40
+            //     }
+            //     // var c_name = 
+            //     // var description = 
+            //     // var duration = 
+            //     // var fees = 
+            //     // var f_path = 
 
-                console.log(course_details);
+            //     console.log(course_details);
 
-                $.ajax({
-                        url:"http://localhost:8080/courses/create",
-                        type:"POST",
-                        data:course_details,
-                        success:function(res){
-                            console.log(res)
-                        }
-                    });
-            }
+            //     $.ajax({
+            //             url:"http://localhost:8080/courses/create",
+            //             type:"POST",
+            //             data:course_details,
+            //             success:function(res){
+            //                 console.log(res)
+            //             }
+            //         });
+            // }
 
             $("#course_info").submit(function(e){
                 e.preventDefault();
@@ -243,16 +243,31 @@
                 // info.push({
                 //     name:"created_by" , value:40
                 // })
-                $.ajax({
-                        url:"http://localhost:8080/courses/create",
-                        type:"POST",
-                        data:info,
-                        success:function(res){
-                            console.log(res)
-                        }
-                    });
+                swal({
+                    title: "Do you want to Add this course?",
+                    icon: "info",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                .then(function(decision) {
+                if (decision) {
+                    $.ajax({
+                            url:"http://localhost:8080/courses/create",
+                            type:"POST",
+                            data:info,
+                            success:function(res){
+                                // console.log(res);
+                                swal("Good job!", "Course Added!", "success")
+                                .then(function(){
+                                    location.reload();
+                                });
+                            }
+                        });
+                    console.log(info);
+                } else {
+                    
+                }});
 
-                console.log(info);
             });
             
             
